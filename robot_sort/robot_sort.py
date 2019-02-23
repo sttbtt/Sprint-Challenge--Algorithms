@@ -100,54 +100,30 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
-        # trying bubble sort, since easier on robot
-        print('-----------------------')
-        print('Sorting....')
-        print(f'Position: {self._position}')
-        print(f'Compare: {self.compare_item()}')
-        print(f'Light: {self.light_is_on()}')
-        print('-----------------------')
+        # trying bubble sort, since robot friendly
+        while self.can_move_right():
 
-        while self.light_is_on() == False:  # Light is off
-            # self.set_light_on()
-
-            # compare item, if > swap and move right
-            if self.compare_item() == 1:
-                self.set_light_on()
-                self.swap_item()
-                self.move_left()
-                self.swap_item()
-                self.move_right()
-
-            # compare item, if < reset and move right           
-            if self.compare_item() == -1:
-                self.move_left()
-                self.swap_item()
-                self.move_right()
-
-            # compare item, if none swap and move right
-            if self.compare_item() == None and self.can_move_right() == False:
-                
-                if self.light_is_on() == False:
-                    print('Hit Break')
-                    break
-
-            elif self.compare_item() == None:
-                self.swap_item()
-                if self.can_move_right() == False:             
-                    while self.can_move_left():
-                        self.move_left()
-                else:
+            if self.compare_item() == None:
+                if self.can_move_right():
+                    self.swap_item()
                     self.move_right()
-                    self.set_light_off()
+                if self.compare_item() == 1:
+                    self.swap_item()
+                    self.set_light_on()
+                self.move_left()
+                self.swap_item()
+                self.move_right()
+          
+        if self.light_is_on():
+            self.set_light_off()
+            while self.can_move_left():
+                self.move_left()
+            self.sort()
 
-                
-            print('-----------------------')
-            print(f'Position: {self._position}')
-            print(f'Compare: {self.compare_item()}')
-            print(f'Light: {self.light_is_on()}')
-            print('-----------------------')
-            # print(self._list)
+                    
+            
+            
+
 
 
 if __name__ == "__main__":
@@ -163,3 +139,58 @@ if __name__ == "__main__":
     print(robot._list)
 
 
+
+
+
+#  def sort(self):
+#         """
+#         Sort the robot's list.
+#         """
+#         # trying bubble sort, since easier on robot
+#         print('-----------------------')
+#         print('Sorting....')
+#         print(f'Position: {self._position}')
+#         print(f'Compare: {self.compare_item()}')
+#         print(f'Light: {self.light_is_on()}')
+#         print('-----------------------')
+
+#         while self.light_is_on() == False:  # Light is off
+#             # self.set_light_on()
+
+#             # compare item, if > swap and move right
+#             if self.compare_item() == 1:
+#                 self.set_light_on()
+#                 self.swap_item()
+#                 self.move_left()
+#                 self.swap_item()
+#                 self.move_right()
+
+#             # compare item, if < reset and move right           
+#             if self.compare_item() == -1:
+#                 self.move_left()
+#                 self.swap_item()
+#                 self.move_right()
+
+#             # compare item, if none swap and move right
+#             if self.compare_item() == None and self.can_move_right() == False:
+                
+#                 if self.light_is_on() == False:
+#                     print('Hit Break')
+#                     break
+
+#             elif self.compare_item() == None:
+#                 self.swap_item()
+#                 if self.can_move_right() == False:             
+#                     while self.can_move_left():
+#                         self.move_left()
+#                 else:
+#                     self.move_right()
+#                     self.set_light_off()
+
+                
+#             print('-----------------------')
+#             print(f'Position: {self._position}')
+#             print(f'Compare: {self.compare_item()}')
+#             print(f'Light: {self.light_is_on()}')
+#             print('-----------------------')
+#             # print(self._list)
