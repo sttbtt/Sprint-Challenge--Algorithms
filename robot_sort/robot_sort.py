@@ -100,20 +100,26 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
-        # trying bubble sort, since robot friendly
-        while self.can_move_right():
+        # Using bubble sort, since robot friendly
 
+        # While robot can move right perform bubble sort
+        while self.can_move_right():
+            
+            # If the robot has noting and can move right, swap and move right
             if self.compare_item() == None:
                 if self.can_move_right():
                     self.swap_item()
                     self.move_right()
+                # If the robot's item is > list item swap them and turn on light
                 if self.compare_item() == 1:
                     self.swap_item()
                     self.set_light_on()
+                # If the robot's item is < list item put the robot's item back to original location
                 self.move_left()
                 self.swap_item()
                 self.move_right()
-          
+
+        #  Check if light is on, if on, turn off and move robot to 0 position and call sort(), else we are done 
         if self.light_is_on():
             self.set_light_off()
             while self.can_move_left():
