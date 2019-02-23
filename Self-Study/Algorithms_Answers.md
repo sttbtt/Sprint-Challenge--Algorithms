@@ -13,4 +13,4 @@ really there is not a Big O for this code because it doesn't run becuase of a ty
 
 ## Exercise II
 
-divide f by 2, drop the egg, if it breaks divide by 2 the lower half of f / 2 and drop another egg, repeat the division until egg doesn't break, if it doesn't break divide the upper half by 2, repeat the division until egg doesn't break, once the break/doesn't break point is found add 1 to the lower half to make sure the egg breaks, or subtract 1 from the upper half to make sure it breaks
+divide f by 2, drop the egg, if it breaks divide by 2 the lower half of f / 2 and drop another egg, repeat the division until egg doesn't break, if it doesn't break divide the upper half by 2, repeat the division until egg doesn't break, once the break/doesn't break point is found add 1 to the lower half to make sure the egg breaks, or subtract 1 from the upper half to make sure it breaks.
