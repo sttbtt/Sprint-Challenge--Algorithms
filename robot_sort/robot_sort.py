@@ -105,39 +105,49 @@ class SortingRobot:
         print('Sorting....')
         print(f'Position: {self._position}')
         print(f'Compare: {self.compare_item()}')
-        print(f'Light: {self._light}')
+        print(f'Light: {self.light_is_on()}')
         print('-----------------------')
 
-        while not self.light_is_on():
+        while self.light_is_on() == False:  # Light is off
             # self.set_light_on()
-
-            # compare item, if none swap and move right
-            if self.compare_item() == None:
-                self.swap_item()
-                if not self.move_right():
-                    self.swap_item()
-                    while self.move_left():
-                        self.move_left()
 
             # compare item, if > swap and move right
             if self.compare_item() == 1:
+                self.set_light_on()
                 self.swap_item()
                 self.move_left()
                 self.swap_item()
                 self.move_right()
 
-            # compare item, if > reset and move right           
-            elif self.compare_item() == -1:
+            # compare item, if < reset and move right           
+            if self.compare_item() == -1:
                 self.move_left()
                 self.swap_item()
                 self.move_right()
 
+            # compare item, if none swap and move right
+            if self.compare_item() == None and self.can_move_right() == False:
+                
+                if self.light_is_on() == False:
+                    print('Hit Break')
+                    break
+
+            elif self.compare_item() == None:
+                self.swap_item()
+                if self.can_move_right() == False:             
+                    while self.can_move_left():
+                        self.move_left()
+                else:
+                    self.move_right()
+                    self.set_light_off()
+
+                
             print('-----------------------')
             print(f'Position: {self._position}')
             print(f'Compare: {self.compare_item()}')
-            print(f'Light: {self._light}')
+            print(f'Light: {self.light_is_on()}')
             print('-----------------------')
-            print(self._list)
+            # print(self._list)
 
 
 if __name__ == "__main__":
